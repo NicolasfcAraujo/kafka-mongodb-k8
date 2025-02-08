@@ -1,5 +1,6 @@
 package com.nicolasaraujo.userService.model;
 
+import com.nicolasaraujo.userService.dto.UserDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -21,6 +22,12 @@ public class User {
         this.name = name;
         this.password = password;
         this.role = role;
+    }
+
+    public User(UserDTO userDTO) {
+        this.name = userDTO.name();
+        this.password = userDTO.password();
+        this.role = userDTO.role();
     }
 
     public String getId() {
