@@ -4,10 +4,12 @@ import com.nicolasaraujo.userService.dto.UserDTO;
 import com.nicolasaraujo.userService.model.User;
 import com.nicolasaraujo.userService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -22,10 +24,9 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<User> getUserById(@PathVariable String id) {
-        return userService.getUserById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Optional<User>> getUserById(@PathVariable String id) {
+
+        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
     @PostMapping
@@ -34,10 +35,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody UserDTO userDTO) {
-        return userService.updateUser(id, userDTO)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Optional<User>> updateUser(@PathVariable String id, @RequestBody UserDTO userDTO) {
+        return new ResponseEntity<>(userService.updateUser(id, userDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
