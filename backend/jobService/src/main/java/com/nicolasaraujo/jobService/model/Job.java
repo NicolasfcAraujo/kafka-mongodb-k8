@@ -1,5 +1,6 @@
 package com.nicolasaraujo.jobService.model;
 
+import com.nicolasaraujo.jobService.dto.JobDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -20,6 +21,11 @@ public class Job {
         this.id = id;
         this.title = title;
         this.description = description;
+    }
+
+    public Job(JobDTO jobDTO) {
+        this.title = jobDTO.title();
+        this.description = jobDTO.description();
     }
 
     public String getId() {
