@@ -28,6 +28,11 @@ public class ApplicationController {
         return new ResponseEntity<>(applicationService.getApplicationById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/by-candidate-id/{id}")
+    public List<Application> getAllApplicationsByCandidateId(@PathVariable String id) {
+        return applicationService.getAllApplicationsByCandidateId(id);
+    }
+
     @PostMapping
     public Application createApplication(@RequestBody ApplicationDTO applicationDTO) {
         return applicationService.createApplication(applicationDTO);

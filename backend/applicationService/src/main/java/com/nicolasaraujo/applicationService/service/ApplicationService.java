@@ -23,6 +23,10 @@ public class ApplicationService {
         return applicationRepository.findById(id);
     }
 
+    public List<Application> getAllApplicationsByCandidateId(String id) {
+        return applicationRepository.findAllByCandidateId(id);
+    }
+
     public Application createApplication(ApplicationDTO applicationDTO) {
         Application application = new Application(applicationDTO);
 
