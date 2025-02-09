@@ -13,11 +13,11 @@ public class User {
     private String id;
     private String name;
     private String password;
-    private String role; //RECRUITER or APPLICANT
+    private UserType role; //RECRUITER or APPLICANT
 
     public User() {}
 
-    public User(String id, String name, String password, String role) {
+    public User(String id, String name, String password, UserType role) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -54,11 +54,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    public UserType getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserType role) {
         this.role = role;
     }
 
