@@ -13,14 +13,16 @@ public class Job {
     private String id;
     private String title;
     private String description;
+    private String employerId;
 
     public Job() {
     }
 
-    public Job(String id, String title, String description) {
+    public Job(String id, String title, String description, String employerId) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.employerId = employerId;
     }
 
     public Job(JobDTO jobDTO) {
@@ -52,16 +54,24 @@ public class Job {
         this.description = description;
     }
 
+    public String getEmployerId() {
+        return employerId;
+    }
+
+    public void setEmployerId(String employerId) {
+        this.employerId = employerId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return Objects.equals(id, job.id) && Objects.equals(title, job.title) && Objects.equals(description, job.description);
+        return Objects.equals(id, job.id) && Objects.equals(title, job.title) && Objects.equals(description, job.description) && Objects.equals(employerId, job.employerId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description);
+        return Objects.hash(id, title, description, employerId);
     }
 }
