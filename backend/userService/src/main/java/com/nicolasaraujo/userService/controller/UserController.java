@@ -29,6 +29,11 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}/is-employer")
+    public ResponseEntity<Boolean> isEmployerById(@PathVariable String id) {
+        return new ResponseEntity<>(userService.isEmployer(id), HttpStatus.OK);
+    }
+
     @PostMapping
     public User createUser(@RequestBody UserDTO userDTO) {
         return userService.createUser(userDTO);

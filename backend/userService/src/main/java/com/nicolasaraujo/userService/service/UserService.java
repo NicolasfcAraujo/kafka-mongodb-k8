@@ -2,6 +2,7 @@ package com.nicolasaraujo.userService.service;
 
 import com.nicolasaraujo.userService.dto.UserDTO;
 import com.nicolasaraujo.userService.model.User;
+import com.nicolasaraujo.userService.model.UserType;
 import com.nicolasaraujo.userService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,14 @@ public class UserService {
 
     public Optional<User> getUserById(String id) {
         return userRepository.findById(id);
+    }
+
+    public Boolean isEmployer(String id) {
+        if (getUserById(id).isPresent()) {
+            return getUserById(id).get().getRole().equals(UserType.EMPLOYER);
+        }
+
+        return false;
     }
 
     public User createUser(UserDTO userDTO) {
