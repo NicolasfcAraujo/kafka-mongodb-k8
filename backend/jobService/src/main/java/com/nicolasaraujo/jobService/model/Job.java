@@ -28,6 +28,7 @@ public class Job {
     public Job(JobDTO jobDTO) {
         this.title = jobDTO.title();
         this.description = jobDTO.description();
+        this.employerId = jobDTO.employerId();
     }
 
     public String getId() {
