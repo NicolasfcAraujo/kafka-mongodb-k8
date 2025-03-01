@@ -4,6 +4,8 @@ import com.nicolasaraujo.notificationService.dto.NotificationDTO;
 import com.nicolasaraujo.notificationService.model.Notification;
 import com.nicolasaraujo.notificationService.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,8 +29,13 @@ public class NotificationService {
         return notificationRepository.findAllByReceiverId(id);
     }
 
-    public Notification createNotification(NotificationDTO notificationDTO) {
-        Notification notification = new Notification(notificationDTO);
+    @KafkaListener(topics = "create.application", groupId = "notification-group")
+    public Notification createApplicationNotification(@Payload String receiverId) {
+        Notification notification = new Notification();
+
+        notification.setReceiverId(receiverId);
+        notification.setSubject("New Application");
+        notification.setContent("Thank you for applying for the Job. We have received your application and will review it shortly. If your profile matches our requirements, we will contact you with the next steps.");
 
         return notificationRepository.save(notification);
     }

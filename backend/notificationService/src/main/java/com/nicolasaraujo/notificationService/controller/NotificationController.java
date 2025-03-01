@@ -33,9 +33,9 @@ public class NotificationController {
         return notificationService.getNotificationsByReceiverId(id);
     }
 
-    @PostMapping
-    public Notification createNotification(@RequestBody NotificationDTO notificationDTO) {
-        return notificationService.createNotification(notificationDTO);
+    @PostMapping("/create-application")
+    public Notification createNotification(@RequestBody String receiverId) {
+        return notificationService.createApplicationNotification(receiverId);
     }
 
     @PutMapping("/{id}")
